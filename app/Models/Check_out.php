@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Providers extends Model
+class Check_out extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 }
