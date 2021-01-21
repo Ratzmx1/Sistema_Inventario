@@ -15,10 +15,10 @@ class CreateCheckInDetailsTable extends Migration
     {
         Schema::create('check_in_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_product');
-            $table->integer('id_provider');
             $table->integer('order_number');
             $table->integer('quantity');
+            $table->foreignId('id_product')->constrained('products');
+            $table->foreignId('id_provider')->constrained('providers');
         });
     }
 

@@ -16,10 +16,10 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('id_subcategory');
             $table->integer('stock');
             $table->string('marca');
             $table->integer('min_stock');
+            $table->foreignId('id_subcategory')->constrained('subcategories');
         });
     }
 
