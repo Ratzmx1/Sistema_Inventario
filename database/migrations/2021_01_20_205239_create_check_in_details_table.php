@@ -16,8 +16,8 @@ class CreateCheckInDetailsTable extends Migration
         Schema::create('check_in_details', function (Blueprint $table) {
             $table->integer('order_number');
             $table->integer('quantity');
-            $table->foreignId('id_product')->constrained('products');
-            $table->foreignId('id_provider')->constrained('providers');
+            $table->foreignId('id_product')->constrained('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_provider')->constrained('providers')->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['order_number',"id_provider","id_product"]);
         });
     }

@@ -15,9 +15,9 @@ class CreateCheckInsTable extends Migration
     {
         Schema::create('check_ins', function (Blueprint $table) {
             $table->integer('order_number');
-            $table->foreignId('id_provider')->constrained('providers');
+            $table->foreignId('id_provider')->constrained('providers')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
-            $table->foreignId('id_user')->constrained('users');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['order_number','id_provider']);
         });
     }

@@ -15,8 +15,8 @@ class CreateCheckOutDetailsTable extends Migration
     {
         Schema::create('check_out_details', function (Blueprint $table) {
             $table->integer('quantity');
-            $table->foreignId('id_product')->constrained('products');
-            $table->foreignId('id_check_out')->constrained('check_outs');
+            $table->foreignId('id_product')->constrained('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_check_out')->constrained('check_outs')->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['id_product','id_check_out']);
         });
     }
