@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock');
             $table->string('marca');
             $table->integer('min_stock');
-            $table->foreignId('id_subcategory')->constrained('subcategories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('subcategory_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
