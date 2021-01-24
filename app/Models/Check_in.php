@@ -9,16 +9,20 @@ class Check_in extends Model
 {
     use HasFactory;
     protected $primaryKey = ['order_number','provider_id'];
-    public function provider(){
+
+    public function provider()
+    {
         return $this->belongsTo(Provider::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);   // N x 1 (Lado del 1)
         // hasMany (Lado del N)
     }
 
-    public function products(){
+    public function products()
+    {
         return $this->belongsToMany(Product::class,"check_in_details"); // N x M
     }
 }
