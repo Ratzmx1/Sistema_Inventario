@@ -14,11 +14,12 @@ class CreateCheckInDetailsTable extends Migration
     public function up()
     {
         Schema::create('check_in_details', function (Blueprint $table) {
+            $table->id();
             $table->integer('order_number');
             $table->integer('quantity');
             $table->foreignId('product_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('provider_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->primary(['order_number',"provider_id","product_id"]);
+            $table->unique(['order_number',"provider_id","product_id"]);
         });
     }
 

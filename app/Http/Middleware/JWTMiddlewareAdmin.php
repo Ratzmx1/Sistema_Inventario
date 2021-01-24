@@ -8,9 +8,8 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\SignatureInvalidException;
 use Illuminate\Http\Request;
 
-class JWTMiddleware
+class JWTMiddlewareAdmin
 {
-
     public function handle(Request $request, Closure $next)
     {
         if(!$request->hasHeader("authorization")){  // Valida si se recibio el token
@@ -32,6 +31,7 @@ class JWTMiddleware
         }catch (\Exception $e){
             return response()->json(["Message"=>"Internal Server Error"],500);
         }
+
 
         return $next($request); // Todito fue validado de pana
     }

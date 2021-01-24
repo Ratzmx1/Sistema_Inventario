@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Check_in extends Model
 {
     use HasFactory;
+    protected $primaryKey = ['order_number','provider_id'];
+    public function provider(){
+        return $this->belongsTo(Provider::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

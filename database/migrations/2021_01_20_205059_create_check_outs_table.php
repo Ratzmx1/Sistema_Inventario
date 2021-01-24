@@ -15,9 +15,9 @@ class CreateCheckOutsTable extends Migration
     {
         Schema::create('check_outs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->foreignId('product_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

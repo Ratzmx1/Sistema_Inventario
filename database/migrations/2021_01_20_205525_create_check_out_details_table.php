@@ -14,10 +14,11 @@ class CreateCheckOutDetailsTable extends Migration
     public function up()
     {
         Schema::create('check_out_details', function (Blueprint $table) {
+            $table->id();
             $table->integer('quantity');
             $table->foreignId('product_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('check_out_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->primary(['product_id','check_out_id']);
+            $table->unique(['product_id','check_out_id']);
         });
     }
 

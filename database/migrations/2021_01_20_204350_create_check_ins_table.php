@@ -14,11 +14,13 @@ class CreateCheckInsTable extends Migration
     public function up()
     {
         Schema::create('check_ins', function (Blueprint $table) {
+            $table->id();
             $table->integer('order_number');
             $table->foreignId('provider_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->primary(['user_id','provider_id']);
+            $table->unique(['order_number','provider_id']);
+
         });
     }
 

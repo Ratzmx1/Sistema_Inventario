@@ -20,9 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('name');
             $table->string('lastname');
-            $table->string('role');
+            $table->foreignId("role_id")->constrained();
             $table->string('status');
-            $table->rememberToken();
         });
     }
 

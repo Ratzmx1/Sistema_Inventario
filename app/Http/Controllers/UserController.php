@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
     public function login(Request $request){
         $credentials = $request->only(["email","password"]);
         $isValid = Auth::attempt($credentials);
@@ -28,7 +27,4 @@ class UserController extends Controller
 
         return response()->json(["message"=>"Logged in","token"=>$token]);
     }
-
-
-
 }

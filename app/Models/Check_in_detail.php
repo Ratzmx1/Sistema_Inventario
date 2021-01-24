@@ -9,4 +9,10 @@ class Check_in_detail extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function entry(){
+         return $this->belongsTo(Check_in::class);
+    }
+
+
 }
