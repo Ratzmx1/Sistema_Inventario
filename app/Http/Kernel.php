@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\JWTMiddleware;
+use App\Http\Middleware\JWTMiddlewareAdmin;
 use GuzzleHttp\Middleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -63,7 +65,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        "jwt"=> Middleware\JWTMiddleware::class,
-        "admin"=> Middleware\JWTMiddlewareAdmin::class,
+        "jwt"=> JWTMiddleware::class,
+        "admin"=> JWTMiddlewareAdmin::class,
     ];
 }

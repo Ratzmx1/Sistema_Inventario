@@ -2,11 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\SignatureInvalidException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JWTMiddlewareAdmin
 {
@@ -25,7 +27,7 @@ class JWTMiddlewareAdmin
         }
 
         try {
-            JWT::decode($SplitAuth[1],env("SECRET_KEY"),array('HS256'));    // Intenta decodificar el token
+            $decoded = JWT::decode($SplitAuth[1],env("SECRET_KEY"),array('HS256'));    // Intenta decodificar el token
         }catch (ExpiredException $exp){     // Excepciones en caso de error
             return response()->json(["Message"=>"Session Expired"],401);
         }catch (SignatureInvalidException $d){
@@ -34,8 +36,11 @@ class JWTMiddlewareAdmin
             return response()->json(["Message"=>"Internal Server Error"],500);
         }
 
-        if (auth()->user()->role=1){
-            return $next($request);
+        $role = User::all()->where("rut","==",$decoded->rut)->first()->role->name;
+        if ($role != "ADMIN" || $role != "ADMINISTRADOR"){
+            return response()->json(["Message"=>"Usuario no autorizado"],403);
         }
+
+        return $next($request);
     }
 }

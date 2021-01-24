@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware("jwt")->get("/",function () {
+Route::middleware("admin")->get("/",function () {
     return response()->json(["OK"=>true]);
 });
 
