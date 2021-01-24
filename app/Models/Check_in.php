@@ -14,6 +14,11 @@ class Check_in extends Model
     }
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);   // N x 1 (Lado del 1)
+        // hasMany (Lado del N)
+    }
+
+    public function products(){
+        return $this->belongsToMany(Product::class,"check_in_details"); // N x M
     }
 }

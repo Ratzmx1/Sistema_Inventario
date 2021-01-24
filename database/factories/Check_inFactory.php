@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Check_in;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class Chack_inFactory extends Factory
+class Check_inFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Check_in::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,8 @@ class Chack_inFactory extends Factory
     public function definition()
     {
         return [
-            "order_number"=>$this->faker->unique()->randomNumber(),
-            "provider_id"=>$this->faker->numberBetween(1,40),
+            "order_number"=>$this->faker->unique()->numberBetween(1,4000),
+            "provider_id"=>$this->faker->unique()->numberBetween(1,40),
             "user_id"=>$this->faker->numberBetween(1,10)
         ];
     }

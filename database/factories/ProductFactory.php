@@ -14,7 +14,7 @@ class ProductFactory extends Factory
      */
     protected $model = Product::class;
 
-    /**
+    /**s
      * Define the model's default state.
      *
      * @return array
@@ -22,7 +22,11 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name"=>$this->faker->randomNumber(),
+            "stock"=>$this->faker->randomNumber(),
+            "marca"=>$this->faker->firstName,
+            "min_stock"=>$this->faker->randomNumber(),
+            "subcategory_id"=>$this->faker->numberBetween(1,40)
         ];
     }
 }

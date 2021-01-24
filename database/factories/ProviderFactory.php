@@ -22,7 +22,9 @@ class ProviderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name"=>$this->faker->firstName,
+            "direction"=>$this->faker->address,
+            "telephone"=>$this->faker->randomNumber()
         ];
     }
 }

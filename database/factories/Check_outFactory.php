@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Check_out;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class Chack_outFactory extends Factory
+class Check_outFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Check_out::class;
 
     /**
      * Define the model's default state.
