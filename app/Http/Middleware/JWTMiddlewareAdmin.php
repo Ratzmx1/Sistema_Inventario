@@ -17,11 +17,13 @@ class JWTMiddlewareAdmin
         }
         $authorization = $request->header("authorization");
         $SplitAuth = explode(" ",$authorization);
+
         if (count($SplitAuth) != 2){    // Valida formato Token
             return response()->json(["Message"=>"Bad Request"],400);
         }elseif ($SplitAuth[0] != "Bearer"){
             return response()->json(["Message"=>"Bad Request"],400);
         }
+
         try {
             JWT::decode($SplitAuth[1],env("SECRET_KEY"),array('HS256'));    // Intenta decodificar el token
         }catch (ExpiredException $exp){     // Excepciones en caso de error
@@ -32,7 +34,8 @@ class JWTMiddlewareAdmin
             return response()->json(["Message"=>"Internal Server Error"],500);
         }
 
-
-        return $next($request); // Todito fue validado de pana
+        if (auth()->user()->role=1){
+            return $next($request);
+        }
     }
 }
