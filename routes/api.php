@@ -15,14 +15,13 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('jwt')->group(function () {
+    // Agrega las rutas con autenticacion normal
 });
 
-Route::middleware("admin")->get("/",function () {
-    return response()->json(["OK"=>true]);
+Route::middleware("admin")->group(function () {
+    // Agrega las rutas del admin
 });
 
-Route::get("/get",[UserController::class,"generarToken"]);
 
 Route::post("/login",[UserController::class,"login"]);
