@@ -17,6 +17,7 @@ use App\Http\Controllers\UserController;
 
 Route::middleware('jwt')->group(function () {
     // Agrega las rutas con autenticacion normal
+    Route::post("/provider/create",[\App\Http\Controllers\ProviderController::class,"create"]);
 });
 
 Route::middleware("admin")->group(function () {
