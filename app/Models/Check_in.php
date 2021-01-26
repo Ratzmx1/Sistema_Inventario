@@ -25,4 +25,10 @@ class Check_in extends Model
     {
         return $this->belongsToMany(Product::class,"check_in_details"); // N x M
     }
+
+    public function details()
+    {
+        return $this->hasMany(Check_in_detail::class);
+    }
+
 }
