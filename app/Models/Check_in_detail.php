@@ -12,13 +12,11 @@ class Check_in_detail extends Model
 
     public function check_in()
     {
-        return $this->belongsTo(Check_in::class,"check_in_id");
+        return $this->belongsTo(Check_in::class);
     }
 
     public function product()
     {
-        return $this->belongsTo(Product::class,"product_id");
+        return $this->belongsTo(Product::class);
     }
-
-
 }
