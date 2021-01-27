@@ -20,13 +20,13 @@ class UserController extends Controller
             return response()->json(["message"=>"Wrong Credentials"],400);
         }
 
-        $rut = Auth::user()->rut;
+        $id = Auth::user()->id;
 
         $now_seconds = time();
         $token = JWT::encode([
             "iat" => $now_seconds,
             "exp" => $now_seconds+(60*10),
-            'rut'=>$rut
+            'id'=>$id
         ],env("SECRET_KEY"));
 
         return response()->json(["message"=>"Logged in","token"=>$token]);

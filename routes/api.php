@@ -15,9 +15,18 @@ use App\Http\Controllers\UserController;
 |
 */
 
+// RUTAS PROVIDER
 Route::middleware('jwt')->group(function () {
-    // Agrega las rutas con autenticacion normal
     Route::post("/provider/create",[\App\Http\Controllers\ProviderController::class,"create"]);
+});
+
+// RUTAS CHECK IN
+Route::middleware('jwt')->group(function () {
+    Route::post("/check_in/create",[\App\Http\Controllers\CheckInController::class,"create"]);
+});
+
+
+Route::middleware('jwt')->group(function () {
     Route::post("/category/create",[\App\Http\Controllers\CategoryController::class,"create"]);
     Route::post("/subCategory/create",[\App\Http\Controllers\SubCategoryController::class,"create"]);
     Route::post("/product/create",[\App\Http\Controllers\ProductController::class,"create"]);
