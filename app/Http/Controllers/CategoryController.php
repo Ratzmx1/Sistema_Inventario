@@ -10,8 +10,7 @@ class CategoryController extends Controller
 {
     public function create(Request $request){
         $validator = Validator::make($request->all(),[
-            "name"=>"required|string",
-            "status"=>"required|string"
+            "name"=>"required|string"
         ]);
 
         if ($validator->fails()){
@@ -20,7 +19,8 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->name = $request->name;
-        $category->status = $request->status;
+        $category->status = "ACTIVE";
+
         try {
             $category->save();
         }catch (\Exception $e){

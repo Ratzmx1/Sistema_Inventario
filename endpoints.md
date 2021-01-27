@@ -57,14 +57,14 @@
 ### User Middleware
 * Ver Entradas: /check_in - GET
 
-* Crear Entrada: /check_in/create - POST (id_provider, n_guia, id_user, date, array( [id_products, quantity] ) )
+* Crear Entrada: /check_in/create - POST (id_provider, n_guia, id_user,  array( [id_products, quantity] ) )
 * TODO : VER ACTUALIZACION
 ---
 ## Rutas Salida
 ### User Middleware
 * Ver salidas: /check_out - GET
 
-* Crear Salida: /check_out/create - POST (id_user, date, array( [id_products, quantity] ) )
+* Crear Salida: /check_out/create - POST (id_user,  array( [id_products, quantity] ) )
 * TODO : VER ACTUALIZACION
 ---
 ## Rutas Detalle Entrada

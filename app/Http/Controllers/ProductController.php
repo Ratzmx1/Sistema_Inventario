@@ -12,11 +12,9 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             "name" => "required|string",
-            "subCategory_id" => "required|integer",
-            "stock" => "required|integer",
+            "subcategory_id" => "required|integer",
             "marca" => "required|string",
-            "minimStock" => "required|integer",
-            "status" => "required|string"
+            "stock_min" => "required|integer"
         ]);
 
         if ($validator->fails()) {
@@ -25,11 +23,12 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->name;
-        $product->subCategory_id = $request->subCategory_id;
-        $product->stock = $request->stock;
+        $product->subcategory_id = $request->subCategory_id;
+        $product->stock = 0;
         $product->marca = $request->marca;
-        $product->minimStock = $request->minimStock;
-        $product->status = $request->status;
+        $product->stock_min = $request->stock_min;
+        $product->status = "ACTIVE";
+
         try {
             $product->save();
         } catch (\Exception $e) {
