@@ -25,6 +25,11 @@ Route::middleware('jwt')->group(function () {
     Route::post("/check_in/create",[\App\Http\Controllers\CheckInController::class,"create"]);
 });
 
+// RUTAS CHECK OUT
+Route::middleware('jwt')->group(function () {
+    Route::post("/check_out/create",[\App\Http\Controllers\CheckOutController::class,"create"]);
+});
+
 
 Route::middleware('jwt')->group(function () {
     Route::post("/category/create",[\App\Http\Controllers\CategoryController::class,"create"]);
