@@ -57,7 +57,7 @@ class UserController extends Controller
         $now_seconds = time();
         $token = JWT::encode([
             "iat" => $now_seconds,
-            "exp" => $now_seconds+(60*10),
+            "exp" => $now_seconds+(60*60*30),
             'id'=>$id
         ],env("SECRET_KEY"));
 

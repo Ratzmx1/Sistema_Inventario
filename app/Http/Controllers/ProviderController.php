@@ -31,4 +31,22 @@ class ProviderController extends Controller
 
         return response()->json(["message"=>"Provider Created Successfully"]);
     }
+
+    public function show(Request $request){
+        $query = $request->query("query");
+
+        if(!$query){
+            $providers = Provider::all();
+            return response()->json(["data"=>$providers]);
+        }
+        $AllProviders = Provider::all();
+        $providers = [];
+        foreach ($AllProviders as $prov){
+            if (strpos(" ".strtoupper($prov->name),strtoupper($query))  ) {
+                    array_push($providers,$prov);
+            }
+        }
+        return response()->json(["data"=>$providers]);
+    }
 }
+

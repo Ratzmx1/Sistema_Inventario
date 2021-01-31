@@ -20,9 +20,9 @@
 ---
 ## Rutas Proveedor
 ### User Middleware
-- [ ] Agregar Proveedor: /provider/create - POST(name, address, phone)
+- [x] Agregar Proveedor: /provider - POST(name, address, phone)
 
-- [ ] Ver Proveedores: /provider - GET
+- [x] Ver Proveedores: /provider - GET
 - [ ] Actualizar Proveedor: /provider/update - POST(name, address, phone)
 ---
 ## Rutas Categoria

@@ -29,4 +29,6 @@ class CategoryController extends Controller
 
         return response()->json(["message"=>"Category Created Successfully"]);
     }
+
+
 }

@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CheckInController;
+use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\CheckOutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +20,18 @@ use App\Http\Controllers\UserController;
 
 // RUTAS PROVIDER
 Route::middleware('jwt')->group(function () {
-    Route::post("/provider/create",[\App\Http\Controllers\ProviderController::class,"create"]);
+    Route::post("/provider",[ProviderController::class,"create"]);
+    Route::get("/provider", [ProviderController::class,"show"]);
 });
 
 // RUTAS CHECK IN
 Route::middleware('jwt')->group(function () {
-    Route::post("/check_in/create",[\App\Http\Controllers\CheckInController::class,"create"]);
+    Route::post("/check_in/create",[CheckInController::class,"create"]);
 });
 
 // RUTAS CHECK OUT
 Route::middleware('jwt')->group(function () {
-    Route::post("/check_out/create",[\App\Http\Controllers\CheckOutController::class,"create"]);
+    Route::post("/check_out/create",[CheckOutController::class,"create"]);
 });
 
 
