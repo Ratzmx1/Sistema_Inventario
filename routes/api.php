@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\CheckOutController;
+use \App\Http\Controllers\CategoryController;
+use \App\Http\Controllers\SubCategoryController;
+use \App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,23 +29,38 @@ Route::middleware('jwt')->group(function () {
 
 // RUTAS CHECK IN
 Route::middleware('jwt')->group(function () {
-    Route::post("/check_in/create",[CheckInController::class,"create"]);
+    Route::post("/check_in",[CheckInController::class,"create"]);
+    Route::get("/check_in",[CheckInController::class,"show"]);
+
 });
 
 // RUTAS CHECK OUT
 Route::middleware('jwt')->group(function () {
-    Route::post("/check_out/create",[CheckOutController::class,"create"]);
+    Route::post("/check_out",[CheckOutController::class,"create"]);
+    Route::get("/check_out",[CheckOutController::class,"show"]);
 });
 
-
+// RUTAS CATEGORY
 Route::middleware('jwt')->group(function () {
-    Route::post("/category/create",[\App\Http\Controllers\CategoryController::class,"create"]);
-    Route::post("/subCategory/create",[\App\Http\Controllers\SubCategoryController::class,"create"]);
-    Route::post("/product/create",[\App\Http\Controllers\ProductController::class,"create"]);
+    Route::post("/category",[CategoryController::class,"create"]);
+    Route::get("/category", [CategoryController::class,"show"]);
 });
 
+// RUTAS SUBCATEGORY
+Route::middleware('jwt')->group(function () {
+    Route::post("/subCategory",[SubCategoryController::class,"create"]);
+    Route::get("/subCategory", [SubCategoryController::class,"show"]);
+});
+
+// RUTAS PRODUCT
+Route::middleware('jwt')->group(function () {
+    Route::post("/product",[ProductController::class,"create"]);
+    Route::get("/product", [ProductController::class,"show"]);
+});
+
+// RUTAS ADMIN
 Route::middleware("admin")->group(function () {
-    // Agrega las rutas del admin
+    Route::get("/user", [UserController::class,"show"]);
 });
 
 

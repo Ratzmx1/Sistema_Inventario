@@ -35,11 +35,10 @@ class ProviderController extends Controller
     public function show(Request $request){
         $query = $request->query("query");
 
-        if(!$query){
-            $providers = Provider::all();
-            return response()->json(["data"=>$providers]);
-        }
         $AllProviders = Provider::all();
+        if(!$query){
+            return response()->json(["data"=>$AllProviders]);
+        }
         $providers = [];
         foreach ($AllProviders as $prov){
             if (strpos(" ".strtoupper($prov->name),strtoupper($query))  ) {

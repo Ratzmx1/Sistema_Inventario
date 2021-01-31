@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             "name"=>$this->faker->randomNumber(),
             "stock"=>$this->faker->randomNumber(),
             "marca"=>$this->faker->firstName,
-            "min_stock"=>$this->faker->randomNumber(),
+            "stock_min"=>$this->faker->randomNumber(),
             "subcategory_id"=>$this->faker->numberBetween(1,40)
         ];
     }

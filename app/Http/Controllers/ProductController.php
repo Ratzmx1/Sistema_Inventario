@@ -24,10 +24,8 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $request->name;
         $product->subcategory_id = $request->subCategory_id;
-        $product->stock = 0;
         $product->marca = $request->marca;
         $product->stock_min = $request->stock_min;
-        $product->status = "ACTIVE";
 
         try {
             $product->save();
@@ -36,5 +34,21 @@ class ProductController extends Controller
         }
 
         return response()->json(["message" => "Product Created Successfully"]);
+    }
+
+    public function show(Request $request){
+        $query = $request->query("query");
+
+        $AllProducts = Product::all();
+        if(!$query){
+            return response()->json(["data"=>$AllProducts]);
+        }
+        $products = [];
+        foreach ($AllProducts as $prod){
+            if (strpos(" ".strtoupper($prod->name),strtoupper($query))  ) {
+                    array_push($products,$prod);
+            }
+        }
+        return response()->json(["data"=>$products]);
     }
 }

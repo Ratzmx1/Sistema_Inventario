@@ -12,7 +12,6 @@ class SubCategoryController extends Controller
         $validator = Validator::make($request->all(),[
             "name"=>"required|string",
             "category_id" =>"required|integer",
-            "status"=>"required|string"
         ]);
 
         if ($validator->fails()){
@@ -22,7 +21,6 @@ class SubCategoryController extends Controller
         $subCategory = new SubCategory();
         $subCategory->name = $request->name;
         $subCategory->category_id = $request->category_id;
-        $subCategory->status = $request->status;
         try {
             $subCategory->save();
         }catch (\Exception $e){
@@ -30,5 +28,21 @@ class SubCategoryController extends Controller
         }
 
         return response()->json(["message"=>"SubCategory Created Successfully"]);
+    }
+
+    public function show(Request $request){
+        $query = $request->query("query");
+
+        $AllSubcategories = Subcategory::all();
+        if(!$query){
+            return response()->json(["data"=>$AllSubcategories]);
+        }
+        $subcategories = [];
+        foreach ($AllSubcategories as $sub){
+            if (strpos(" ".strtoupper($sub->name),strtoupper($query))  ) {
+                    array_push($subcategories,$sub);
+            }
+        }
+        return response()->json(["data"=>$subcategories]);
     }
 }

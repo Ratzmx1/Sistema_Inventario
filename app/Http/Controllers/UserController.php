@@ -63,4 +63,20 @@ class UserController extends Controller
 
         return response()->json(["message"=>"Logged in","token"=>$token]);
     }
+
+    public function show(Request $request){
+        $query = $request->query("query");
+
+        $AllUsers = User::all();
+        if(!$query){
+            return response()->json(["data"=>$AllUsers]);
+        }
+        $users = [];
+        foreach ($AllUsers as $u){
+            if (strpos(" ".strtoupper($u->name),strtoupper($query))  ) {
+                    array_push($users,$u);
+            }
+        }
+        return response()->json(["data"=>$users]);
+    }
 }

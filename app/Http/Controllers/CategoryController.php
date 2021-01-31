@@ -19,7 +19,6 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->name = $request->name;
-        $category->status = "ACTIVE";
 
         try {
             $category->save();
@@ -30,5 +29,20 @@ class CategoryController extends Controller
         return response()->json(["message"=>"Category Created Successfully"]);
     }
 
+    public function show(Request $request){
+        $query = $request->query("query");
+
+        $AllCategories = Category::all();
+        if(!$query){
+            return response()->json(["data"=>$AllCategories]);
+        }
+        $categories = [];
+        foreach ($AllCategories as $cat){
+            if (strpos(" ".strtoupper($cat->name),strtoupper($query))  ) {
+                    array_push($categories,$cat);
+            }
+        }
+        return response()->json(["data"=>$categories]);
+    }
 
 }

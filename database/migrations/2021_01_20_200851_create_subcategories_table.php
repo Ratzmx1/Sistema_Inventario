@@ -17,7 +17,7 @@ class CreateSubcategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('category_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('status');
+            $table->string('status')->default("ACTIVE");
         });
     }
 

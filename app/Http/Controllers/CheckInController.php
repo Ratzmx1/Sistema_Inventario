@@ -43,4 +43,20 @@ class CheckInController extends Controller
 
         return response()->json(["message"=>"Check In Created Successfully"]);
     }
+
+    public function show(Request $request){
+        $query = $request->query("query");
+
+        $AllCheck_ins = Check_in::all();
+        if(!$query){
+            return response()->json(["data"=>$AllCheck_ins]);
+        }
+        $check_in = [];
+        foreach ($AllCheck_ins as $in){
+            if (strpos(" ".($in->order_number),($query))  ) {
+                    array_push($check_in,$in);
+            }
+        }
+        return response()->json(["data"=>$check_in]);
+    }
 }
