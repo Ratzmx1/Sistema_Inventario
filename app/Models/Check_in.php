@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Check_in extends Model
 {
     use HasFactory;
-    protected $primaryKey = ['order_number','provider_id'];
 
     public function provider()
     {

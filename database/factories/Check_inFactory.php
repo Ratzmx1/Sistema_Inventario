@@ -24,7 +24,7 @@ class Check_inFactory extends Factory
         return [
             "order_number"=>$this->faker->unique()->numberBetween(1,4000),
             "provider_id"=>$this->faker->unique()->numberBetween(1,40),
-            "user_id"=>$this->faker->numberBetween(1,10)
+            "user_id"=>1
         ];
     }
 }
