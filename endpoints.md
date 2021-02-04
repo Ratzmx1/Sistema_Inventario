@@ -46,7 +46,7 @@
 ---
 ## Rutas Producto
 ### User Middleware
- - [ ] Ver Producto: /product/<id_product> - GET
+ - [x] Ver Producto: /product/<id_product> - GET
 
  - [x] Ver Productos: /product - GET
  - [ ] Actualizar Status: /product/update/status - POST (id, status)
@@ -57,14 +57,14 @@
 ---
 ## Rutas Entrada
 ### User Middleware
-- [ ] Ver Entradas: /check_in - GET
+- [x] Ver Entradas: /check_in - GET
 
 - [x] Crear Entrada: /check_in/create - POST (provider_id, n_guia, user_id,  array( [id_products, quantity] ) )
 - [ ] TODO : VER ACTUALIZACION
 ---
 ## Rutas Salida
 ### User Middleware
-- [ ] Ver salidas: /check_out - GET
+- [x] Ver salidas: /check_out - GET
 
 - [x] Crear Salida: /check_out/create - POST (id_user,  array( [id_products, quantity] ) )
 - [ ] TODO : VER ACTUALIZACION

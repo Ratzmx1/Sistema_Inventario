@@ -23,19 +23,9 @@ class Check_in_detailFactory extends Factory
     public function definition()
     {
         return [
-            "order_number"=>Check_in::all()[0]->order_number,
-            "quantity"=>$this->faker->randomNumber(),
+            "check_in_id"=>$this->faker->numberBetween(3,7),
             "product_id"=>$this->faker->numberBetween(1,150),
-            "provider_id"=>Check_in::all()[0]->provider_id
+            "quantity"=>$this->faker->randomNumber()
         ];
     }
 }
-
-/*
-            $table->id();
-            $table->integer('order_number');
-            $table->integer('quantity');
-            $table->foreignId('product_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('provider_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->unique(['order_number',"provider_id","product_id"]);
-*/
