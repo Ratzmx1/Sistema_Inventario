@@ -18,3 +18,4 @@ class CheckInDetailController extends Controller
         return response()->json(["data"=>$details]);
     }
 }
+
