@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
 //        Models\User::factory(10)->create();
 //        Models\Category::factory(15)->create();
 //        Models\Provider::factory(30)->create();
-//        Models\Subcategory::factory(40)->create();
+        Models\Subcategory::factory(40)->create();
 //        Models\Product::factory(150)->create();
 //        Models\Check_in::factory(5)->create();
 //        Models\Check_in_detail::factory(5)->create();

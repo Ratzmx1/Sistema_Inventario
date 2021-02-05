@@ -10,7 +10,7 @@ class Provider extends Model
     use HasFactory;
     public $timestamps = false;
 
-    public function check_in()
+    public function check_ins()
     {
         return $this->hasMany(Check_in::class);
     }

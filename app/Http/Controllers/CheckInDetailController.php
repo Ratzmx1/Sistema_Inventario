@@ -12,9 +12,9 @@ class CheckInDetailController extends Controller
         if (count($details) == 0){
             return response()->json(["message"=>"No Data Found"],404);
         }
-//        foreach ($details as $detail){
-//            $detail->products = $detail->product;
-//        }
+        foreach ($details as $detail){
+            $detail->products = $detail->product;
+        }
         return response()->json(["data"=>$details]);
     }
 }

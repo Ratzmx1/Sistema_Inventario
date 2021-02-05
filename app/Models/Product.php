@@ -15,12 +15,12 @@ class Product extends Model
         return $this->belongsTo(Subcategory::class);
     }
 
-    public function check_in()
+    public function check_ins()
     {
         return $this->hasManyThrough(Check_in::class, "check_in_details");
     }
 
-    public function check_out()
+    public function check_outs()
     {
         return $this->hasManyThrough(Check_out::class, "check_out_details");
     }

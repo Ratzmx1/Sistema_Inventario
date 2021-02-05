@@ -47,12 +47,12 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function check_in()
+    public function check_ins()
     {
         return $this->hasMany(Check_in::class);
     }
 
-    public function check_out()
+    public function check_outs()
     {
         return $this->hasMany(Check_out::class);
     }
