@@ -30,17 +30,21 @@ class SubCategoryController extends Controller
         return response()->json(["message"=>"SubCategory Created Successfully"]);
     }
 
+
     public function show(Request $request){
         $query = $request->query("query");
 
         $AllSubcategories = Subcategory::all();
         if(!$query){
+            foreach ($AllSubcategories as $subcat){
+                $subcat->categoria = $subcat->category()->first();
+            }
             return response()->json(["data"=>$AllSubcategories]);
         }
         $subcategories = [];
         foreach ($AllSubcategories as $sub){
             if (strpos(" ".strtoupper($sub->name),strtoupper($query))  ) {
-                    array_push($subcategories,$sub);
+                array_push($subcategories,$sub);
             }
         }
         return response()->json(["data"=>$subcategories]);
