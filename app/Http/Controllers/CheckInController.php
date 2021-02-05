@@ -59,5 +59,6 @@ class CheckInController extends Controller
             }
         }
         return response()->json(["data"=>$check_in]);
+
     }
 }
