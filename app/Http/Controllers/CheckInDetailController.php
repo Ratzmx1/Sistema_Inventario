@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 
 class CheckInDetailController extends Controller
 {
-    public function show($id){
-        $details = Check_in_detail::all()->where("check_in_id","==",$id);
+    public function show(Request $request){
+        $query = $request->query("query");
+
+        $details = Check_in_detail::all()->where("check_in_id","==",$query);
         if (count($details) == 0){
             return response()->json(["message"=>"No Data Found"],404);
         }
-        foreach ($details as $detail){
-            $detail->products = $detail->product;
+        foreach ($details as $d){
+            $d->productName = $d->product()->first()->name;
         }
         return response()->json(["data"=>$details]);
     }

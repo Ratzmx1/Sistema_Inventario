@@ -48,17 +48,21 @@ class CheckInController extends Controller
         $query = $request->query("query");
 
         $AllCheck_ins = Check_in::all();
+        $check_in = [];
         if(!$query){
             foreach ($AllCheck_ins as $in){
-                $in->nombreProveedor = $in->provider()->first();
+                $in->providerName = $in->provider()->first()->name;
+                $in->userName = $in->user()->first()->name;
+                array_push($check_in,$in);
             }
-            return response()->json(["data"=>$AllCheck_ins]);
+            return response()->json(["data"=>$check_in]);
         }
-        $check_in = [];
         foreach ($AllCheck_ins as $in){
             if (strpos(" ".($in->order_number),($query))) {
-                $in->nombreProveedor = $in->provider()->first();
-                array_push($check_in,$in);}
+                $in->nombreProveedor = $in->provider()->first()->name;
+                $in->userName = $in->user()->first()->name;
+                array_push($check_in,$in);
+            }
         }
         return response()->json(["data"=>$check_in]);
 

@@ -23,7 +23,7 @@ class Check_in_detailFactory extends Factory
     public function definition()
     {
         return [
-            "check_in_id"=>$this->faker->numberBetween(3,7),
+            "check_in_id"=>$this->faker->numberBetween(1,5),
             "product_id"=>$this->faker->numberBetween(1,150),
             "quantity"=>$this->faker->randomNumber()
         ];

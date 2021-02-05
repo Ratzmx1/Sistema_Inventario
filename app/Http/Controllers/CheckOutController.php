@@ -44,13 +44,18 @@ class CheckOutController extends Controller
         $query = $request->query("query");
 
         $AllCheck_outs = Check_out::all();
-        if(!$query){
-            return response()->json(["data"=>$AllCheck_outs]);
-        }
         $check_out = [];
+        if(!$query){
+            foreach ($AllCheck_outs as $out){
+                $out->userName = $out->user()->first()->name;
+                array_push($check_out,$out);
+            }
+            return response()->json(["data"=>$check_out]);
+        }
         foreach ($AllCheck_outs as $out){
-            if (strpos(" ".($out->order_number),$query)) {
-                    array_push($check_out,$out);
+            if (strpos(" ".($out->order_number),($query))) {
+                $out->userName = $out->user()->first()->name;
+                array_push($check_out,$out);
             }
         }
         return response()->json(["data"=>$check_out]);
