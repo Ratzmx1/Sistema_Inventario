@@ -6,9 +6,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\CheckOutController;
+use \App\Http\Controllers\ProductController;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\SubCategoryController;
-use \App\Http\Controllers\ProductController;
+use \App\Http\Controllers\CheckInDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,11 @@ Route::middleware('jwt')->group(function () {
     Route::post("/check_in",[CheckInController::class,"create"]);
     Route::get("/check_in",[CheckInController::class,"show"]);
 
+});
+
+// RUTAS CHECK IN DETAIL
+Route::middleware('jwt')->group(function () {
+    Route::get("/check_in/detail/{id}",[CheckInDetailController::class,"show"]);
 });
 
 // RUTAS CHECK OUT

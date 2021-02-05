@@ -49,7 +49,7 @@ class CheckOutController extends Controller
         }
         $check_out = [];
         foreach ($AllCheck_outs as $out){
-            if (strpos(" ".($out->order_number),($query))) {
+            if (strpos(" ".($out->order_number),$query)) {
                     array_push($check_out,$out);
             }
         }
