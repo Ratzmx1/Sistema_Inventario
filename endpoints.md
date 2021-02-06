@@ -3,78 +3,78 @@
 ---
 ## Rutas Usuario
 ### Sin Middleware
-- [x] Login :   /user/Login
+* ~~Login :   /user/Login~~
 
-- [ ] registro: /user/Registro
+* registro: /user/Registro
 
 ### Admin Middleware
-- [ ] Ver solicitudes de registro: /user/solicitudes  - Get
-- [x] Ver usuarios registrados: /user - GET
+* Ver solicitudes de registro: /user/solicitudes  - Get
+* ~~Ver usuarios registrados: /user - GET~~
 
-- [ ] Activar Cuenta: /user/activar - POST (id)
-- [ ] Actualizar Rol: /user/role - POST (id, role_id)
+* Activar Cuenta: /user/activar - POST (id)
+* Actualizar Rol: /user/role - POST (id, role_id)
 
 ### User Middleware
-- [ ] Actualizar Contraseña: /user/change/password
+* Actualizar Contraseña: /user/change/password
 
-- [ ] Actualizar Correo: /user/change/email
-- [ ] Cerrar Cuenta: /user/change/status
+* Actualizar Correo: /user/change/email
+* Cerrar Cuenta: /user/change/status
 ---
 ## Rutas Proveedor
 ### User Middleware
-- [x] Agregar Proveedor: /provider - POST(name, address, phone)
+* ~~Agregar Proveedor: /provider - POST(name, address, phone)~~
 
-- [x] Ver Proveedores: /provider - GET
-- [ ] Actualizar Proveedor: /provider/update - POST(name, address, phone)
+* ~~Ver Proveedores: /provider - GET~~
+* Actualizar Proveedor: /provider/update - POST(name, address, phone)
 ---
 ## Rutas Categoria
 ### User Middleware
-- [x] Agregar Categoria: /category/create - POST (name)
+* ~~Agregar Categoria: /category/create - POST (name)~~
 
-- [x] Ver Categorias: /category - GET
-- [ ] Actualizar Categorias: /category/update - POST (name)
-- [ ] Cambiar Status Categorias: /category/update/status - POST (status)
+* ~~Ver Categorias: /category - GET~~
+* Actualizar Categorias: /category/update - POST (name)
+* Cambiar Status Categorias: /category/update/status - POST (status)
 ---
 ## Rutas SubCategoria
 ### User Middleware
-- [x] Ver SubCategoria: /subcategory - GET
+* ~~Ver SubCategoria: /subcategory - GET~~
 
-- [ ] Actualizar: /subcategory/update - POST (name)
-- [x] Agregar SubCategoria: /subcategory/create - POST (name)
-- [ ] Cambiar Status: /subcategory/update/status - POST (id, status)
-- [ ] Cambiar Categoria : /subcategory/update/category - POST (id, id_category)
+* Actualizar: /subcategory/update - POST (name)
+* ~~Agregar SubCategoria: /subcategory/create - POST (name)~~
+* Cambiar Status: /subcategory/update/status - POST (id, status)
+* Cambiar Categoria : /subcategory/update/category - POST (id, id_category)
 ---
 ## Rutas Producto
 ### User Middleware
- - [x] Ver Producto: /product/<id_product> - GET
+ ~~Ver Producto: /product/<id_product> - GET~~
 
- - [x] Ver Productos: /product - GET
- - [ ] Actualizar Status: /product/update/status - POST (id, status)
- - [x] Agregar Producto: /product/create - POST (name, id_subcategory, marca, stock_min)
- - [ ] Actualizar Nombre:  /product/update/name - POST (id, name)
- - [ ] Actualizar Stock Minimo: /product/update/min_stock - POST (id, min_stock)
- - [ ] Actualizar SubCategoria : /product/update/subcategory - POST (id, id_category)
+ ~~Ver Productos: /product - GET~~
+ * Actualizar Status: /product/update/status - POST (id, status)
+ ~~Agregar Producto: /product/create - POST (name, id_subcategory, marca, stock_min)~~
+ * Actualizar Nombre:  /product/update/name - POST (id, name)
+ * Actualizar Stock Minimo: /product/update/min_stock - POST (id, min_stock)
+ * Actualizar SubCategoria : /product/update/subcategory - POST (id, id_category)
 ---
 ## Rutas Entrada
 ### User Middleware
-- [x] Ver Entradas: /check_in - GET
+* ~~Ver Entradas: /check_in - GET~~
 
-- [x] Crear Entrada: /check_in/create - POST (provider_id, n_guia, user_id,  array( [id_products, quantity] ) )
-- [ ] TODO : VER ACTUALIZACION
+* ~~Crear Entrada: /check_in/create - POST (provider_id, n_guia, user_id,  array( [id_products, quantity] ) )~~
+* TODO : VER ACTUALIZACION
 ---
 ## Rutas Salida
 ### User Middleware
-- [x] Ver salidas: /check_out - GET
+* ~~Ver salidas: /check_out - GET~~
 
-- [x] Crear Salida: /check_out/create - POST (id_user,  array( [id_products, quantity] ) )
-- [ ] TODO : VER ACTUALIZACION
+* ~~Crear Salida: /check_out/create - POST (id_user,  array( [id_products, quantity] ) )~~
+* TODO : VER ACTUALIZACION
 ---
 ## Rutas Detalle Entrada
 ### User Middleware
-- [x] Ver Detalle Entrada: /check_in_detail/<id_check_in> - GET
+* ~~Ver Detalle Entrada: /check_in_detail/<id_check_in> - GET~~
 
 ---
 ## Rutas Detalle Salida
 ### User Middleware
-- [ ] Ver Detalle Salida: /check_out_detail/<id_check_out> - GET
+* ~~Ver Detalle Salida: /check_out_detail/<id_check_out> - GET~~
 
