@@ -46,7 +46,7 @@ class ProductController extends Controller
         $products = [];
         foreach ($AllProducts as $prod){
             if (strpos(" ".strtoupper($prod->name),strtoupper($query))  ) {
-                    array_push($products,$prod);
+                array_push($products,$prod);
             }
         }
         return response()->json(["data"=>$products]);

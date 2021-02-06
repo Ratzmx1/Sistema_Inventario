@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $categories = [];
         foreach ($AllCategories as $cat){
             if (strpos(" ".strtoupper($cat->name),strtoupper($query))  ) {
-                    array_push($categories,$cat);
+                array_push($categories,$cat);
             }
         }
         return response()->json(["data"=>$categories]);

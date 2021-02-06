@@ -37,7 +37,7 @@ Route::middleware('jwt')->group(function () {
 
 // RUTAS CHECK IN DETAIL
 Route::middleware('jwt')->group(function () {
-    Route::get("/check_in/detail",[CheckInDetailController::class,"show"]);
+    Route::get("/check_in/detail/{id}",[CheckInDetailController::class,"show"]);
 });
 
 // RUTAS CHECK OUT

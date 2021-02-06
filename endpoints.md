@@ -71,7 +71,7 @@
 ---
 ## Rutas Detalle Entrada
 ### User Middleware
-- [ ] Ver Detalle Entrada: /check_in_detail/<id_check_in> - GET
+- [x] Ver Detalle Entrada: /check_in_detail/<id_check_in> - GET
 
 ---
 ## Rutas Detalle Salida
