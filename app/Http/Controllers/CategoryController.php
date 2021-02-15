@@ -45,4 +45,27 @@ class CategoryController extends Controller
         return response()->json(["data"=>$categories]);
     }
 
+    public function change(Request $request){
+        $validator = Validator::make($request->all(),[
+            "id"=>"required|integer",
+            "name"=>"required|string",
+            "status"=>"required|string"
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(["errors",$validator->errors()],400);
+        }
+
+        $changeCategory = Category::find($request->id);
+        $changeCategory->name = $request->name;
+        $changeCategory->status = $request->status;
+
+        try {
+            $changeCategory->save();
+        }catch (\Exception $e){
+            return response()->json(["message","Internal Server Error"],500);
+        }
+
+        return response()->json(["message"=>"Category Changed Successfully"]);
+    }
 }

@@ -60,4 +60,29 @@ class CheckOutController extends Controller
         }
         return response()->json(["data"=>$check_out]);
     }
+
+    public function change(Request $request){
+        $validator = Validator::make($request->all(),[
+            "id"=>"required|integer",
+            "user_id"=>"required|integer",
+            "detail"=> "required|array"
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(["errors",$validator->errors()],400);
+        }
+
+        $changeCheckOut = Check_out::find($request->id);
+        $changeCheckOut->user_id = $request->user_id;
+        $changeCheckOut->save();
+
+        foreach ($request->detail as $detail){
+            $det = Check_out_detail::find($request->detail_id);
+            $det->product_id = $detail[0];
+            $det->quantity = $detail[1];
+            $det->save();
+        }
+
+        return response()->json(["message"=>"Check_out Changed Successfully"]);
+    }
 }

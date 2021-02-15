@@ -23,8 +23,8 @@ class ProviderFactory extends Factory
     {
         return [
             "name"=>$this->faker->firstName,
-            "direction"=>$this->faker->address,
-            "telephone"=>$this->faker->randomNumber()
+            "address"=>$this->faker->address,
+            "phone"=>$this->faker->randomNumber()
         ];
     }
 }

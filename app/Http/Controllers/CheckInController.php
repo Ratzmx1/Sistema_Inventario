@@ -67,4 +67,34 @@ class CheckInController extends Controller
         return response()->json(["data"=>$check_in]);
 
     }
+
+    public function change(Request $request){
+        $validator = Validator::make($request->all(),[
+            "id"=>"required|integer",
+            "detail_id"=>"required|integer",
+            "provider_id"=>"required|integer",
+            "order_number"=>"required|integer",
+            "user_id"=>"required|integer",
+            "detail"=> "required|array"
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(["errors",$validator->errors()],400);
+        }
+
+        $changeCheckIn = Check_in::find($request->id);
+        $changeCheckIn->provider_id = $request->provider_id;
+        $changeCheckIn->order_number = $request->order_number;
+        $changeCheckIn->user_id = $request->user_id;
+        $changeCheckIn->save();
+
+        foreach ($request->detail as $detail){
+            $det = Check_in_detail::find($request->detail_id);
+            $det->product_id = $detail[0];
+            $det->quantity = $detail[1];
+            $det->save();
+        }
+
+        return response()->json(["message"=>"Check_in Changed Successfully"]);
+    }
 }

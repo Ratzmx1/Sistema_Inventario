@@ -26,12 +26,14 @@ use \App\Http\Controllers\CheckInDetailController;
 Route::middleware('jwt')->group(function () {
     Route::post("/provider",[ProviderController::class,"create"]);
     Route::get("/provider", [ProviderController::class,"show"]);
+    Route::post("/provider", [ProviderController::class,"change"]);
 });
 
 // RUTAS CHECK IN
 Route::middleware('jwt')->group(function () {
     Route::post("/check_in",[CheckInController::class,"create"]);
     Route::get("/check_in",[CheckInController::class,"show"]);
+    Route::get("/check_in", [CheckInController::class,"change"]);
 
 });
 
@@ -44,24 +46,28 @@ Route::middleware('jwt')->group(function () {
 Route::middleware('jwt')->group(function () {
     Route::post("/check_out",[CheckOutController::class,"create"]);
     Route::get("/check_out",[CheckOutController::class,"show"]);
+    Route::post("/check_out",[CheckOutController::class,"change"]);
 });
 
 // RUTAS CATEGORY
 Route::middleware('jwt')->group(function () {
     Route::post("/category",[CategoryController::class,"create"]);
     Route::get("/category", [CategoryController::class,"show"]);
+    Route::post("/category", [CategoryController::class,"change"]);
 });
 
 // RUTAS SUBCATEGORY
 Route::middleware('jwt')->group(function () {
-    Route::post("/subCategory",[SubCategoryController::class,"create"]);
+    Route::post("/subCategory", [SubCategoryController::class,"create"]);
     Route::get("/subCategory", [SubCategoryController::class,"show"]);
+    Route::post("/subCategory", [SubCategoryController::class,"change"]);
 });
 
 // RUTAS PRODUCT
 Route::middleware('jwt')->group(function () {
-    Route::post("/product",[ProductController::class,"create"]);
+    Route::post("/product", [ProductController::class,"create"]);
     Route::get("/product", [ProductController::class,"show"]);
+    Route::post("/product", [ProductController::class,"change"]);
 });
 
 // RUTAS ADMIN

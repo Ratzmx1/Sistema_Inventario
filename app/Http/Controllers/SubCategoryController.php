@@ -49,4 +49,30 @@ class SubCategoryController extends Controller
         }
         return response()->json(["data"=>$subcategories]);
     }
+
+    public function change(Request $request){
+        $validator = Validator::make($request->all(),[
+            "id"=>"required|integer",
+            "name"=>"required|string",
+            "category_id"=>"required|integer",
+            "status"=>"required|string"
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(["errors",$validator->errors()],400);
+        }
+
+        $changeSubCategory = SubCategory::find($request->id);
+        $changeSubCategory->name = $request->name;
+        $changeSubCategory->category_id = $request->category_id;
+        $changeSubCategory->status = $request->status;
+
+        try {
+            $changeSubCategory->save();
+        }catch (\Exception $e){
+            return response()->json(["message","Internal Server Error"],500);
+        }
+
+        return response()->json(["message"=>"SubCategory Changed Successfully"]);
+    }
 }

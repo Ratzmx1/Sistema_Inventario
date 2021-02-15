@@ -51,4 +51,36 @@ class ProductController extends Controller
         }
         return response()->json(["data"=>$products]);
     }
+
+    public function change(Request $request){
+        $validator = Validator::make($request->all(),[
+            "id"=>"required|integer",
+            "name"=>"required|string",
+            "subCategory_id"=>"required|integer",
+            "stock"=>"required|integer",
+            "marca"=>"required|string",
+            "stock_min"=>"required|integer",
+            "status"=>"required|string"
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(["errors",$validator->errors()],400);
+        }
+
+        $changeProduct = Product::find($request->id);
+        $changeProduct->name = $request->name;
+        $changeProduct->subCategory_id = $request->subCategory_id;
+        $changeProduct->stock = $request->stock;
+        $changeProduct->marca = $request->marca;
+        $changeProduct->stock_min = $request->stock_min;
+        $changeProduct->status = $request->status;
+
+        try {
+            $changeProduct->save();
+        }catch (\Exception $e){
+            return response()->json(["message","Internal Server Error"],500);
+        }
+
+        return response()->json(["message"=>"Product Changed Successfully"]);
+    }
 }
