@@ -3,13 +3,53 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/*
+ *
+ *
+ * @mixin Builder
+ */
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property string $email
+ * @property string $password
+ * @property string $name
+ * @property string $lastname
+ * @property int $role_id
+ * @property string $status
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Check_in[] $check_ins
+ * @property-read int|null $check_ins_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Check_out[] $check_outs
+ * @property-read int|null $check_outs_count
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @property-read \App\Models\Role $role
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
+ * @method static Builder|User query()
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereLastname($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereRoleId($value)
+ * @method static Builder|User whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
+ * @mixin \Eloquent
+ */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
+
     public $timestamps = false;
 
     /**

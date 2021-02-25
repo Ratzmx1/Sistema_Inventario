@@ -8,7 +8,7 @@
 * registro: /user/Registro
 
 ### Admin Middleware
-* Ver solicitudes de registro: /user/solicitudes  - Get
+* Ver cuentas inactivas: /user/inactive  - Get
 * ~~Ver usuarios registrados: /user - GET~~
 
 * Activar Cuenta: /user/activar - POST (id)

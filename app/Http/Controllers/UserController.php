@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Auth;
 
+
 /**
  * @OA\Info(title="User endpoints", version="1.0")
  *
  * @OA\Server(url="localhost:8000")
+ *
+ *
  */
 class UserController extends Controller
 {
@@ -60,7 +63,6 @@ class UserController extends Controller
             "exp" => $now_seconds+(60*60*30),
             'id'=>$id
         ],env("SECRET_KEY"));
-
         return response()->json(["message"=>"Logged in","token"=>$token]);
     }
 
