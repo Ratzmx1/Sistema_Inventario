@@ -81,4 +81,44 @@ class UserController extends Controller
         }
         return response()->json(["data"=>$users]);
     }
+
+    public function showInactive(Request $request){
+        $query = $request->query("query");
+
+        $DeletedUsers = User::onlyTrashed();
+        if(!$query){
+            return response()->json(["data"=>$DeletedUsers]);
+        }
+        $users = [];
+        foreach ($DeletedUsers as $u){
+            if (strpos(" ".strtoupper($u->name),strtoupper($query))  ) {
+                    array_push($users,$u);
+            }
+        }
+        return response()->json(["data"=>$users]);
+    }
+
+    public function activateUser($id){
+        $InactiveUsers = User::onlyTrashed();
+        foreach ($InactiveUsers as $i){
+            if ($i->id == $id) {
+                $i->restore();
+            }
+            else {
+                return response()->json(["message" => "User Not Found"], 404);
+            }
+        }
+        return response()->json(["message"=>"User Activated Successfully"]);
+    }
+
+    public function deactivateUser($id){
+        try {
+            $activeUser = User::find($id);
+            $activeUser->delete();
+        } catch (\Exception $e) {
+            return response()->json(["message" => "User Not Found"], 404);
+        }
+
+        return response()->json(["message"=>"User Deactivated Successfully"]);
+    }
 }
