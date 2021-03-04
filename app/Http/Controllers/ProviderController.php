@@ -74,5 +74,29 @@ class ProviderController extends Controller
 
         return response()->json(["message"=>"Provider Changed Successfully"]);
     }
+
+    public function activate($id){
+        $InactiveProviders = Provider::onlyTrashed();
+        foreach ($InactiveProviders as $i){
+            if ($i->id == $id) {
+                $i->restore();
+            }
+            else {
+                return response()->json(["message" => "Provider Not Found"], 404);
+            }
+        }
+        return response()->json(["message"=>"Provider Activated Successfully"]);
+    }
+
+    public function deactivate($id){
+        try {
+            $activeProvider = Provider::find($id);
+            $activeProvider->delete();
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Provider Not Found"], 404);
+        }
+
+        return response()->json(["message"=>"Provider Deactivated Successfully"]);
+    }
 }
 

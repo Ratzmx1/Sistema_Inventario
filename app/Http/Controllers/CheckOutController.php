@@ -85,4 +85,36 @@ class CheckOutController extends Controller
 
         return response()->json(["message"=>"Check_out Changed Successfully"]);
     }
+
+    public function activate($id, $detail_id){
+        $InactiveCheck_outs = Check_out::onlyTrashed();
+        $InactiveCheck_out_details = Check_out_detail::onlyTrashed();
+        foreach ($InactiveCheck_outs as $i){
+            if ($i->id == $id) {
+                $i->restore();
+            }
+            else {
+                return response()->json(["message" => "Check_out Not Found"], 404);
+            }
+        }
+        foreach ($InactiveCheck_out_details as $i){
+            if ($i->id == $detail_id) {
+                $i->restore();
+            }
+        }
+        return response()->json(["message"=>"Check_out Activated Successfully"]);
+    }
+
+    public function deactivate($id, $detail_id){
+        try {
+            $activeCheck_out = Check_out::find($id);
+            $activeCheck_out_details = Check_out_detail::find($detail_id);
+            $activeCheck_out->delete();
+            $activeCheck_out_details->delete();
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Check_out Not Found"], 404);
+        }
+
+        return response()->json(["message"=>"Check_out Deactivated Successfully"]);
+    }
 }

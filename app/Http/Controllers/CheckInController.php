@@ -97,4 +97,36 @@ class CheckInController extends Controller
 
         return response()->json(["message"=>"Check_in Changed Successfully"]);
     }
+
+    public function activate($id, $detail_id){
+        $InactiveCheck_ins = Check_in::onlyTrashed();
+        $InactiveCheck_in_details = Check_in_detail::onlyTrashed();
+        foreach ($InactiveCheck_ins as $i){
+            if ($i->id == $id) {
+                $i->restore();
+            }
+            else {
+                return response()->json(["message" => "Check_in Not Found"], 404);
+            }
+        }
+        foreach ($InactiveCheck_in_details as $i){
+            if ($i->id == $detail_id) {
+                $i->restore();
+            }
+        }
+        return response()->json(["message"=>"Check_in Activated Successfully"]);
+    }
+
+    public function deactivate($id, $detail_id){
+        try {
+            $activeCheck_in = Check_in::find($id);
+            $activeCheck_in_details = Check_in_detail::find($detail_id);
+            $activeCheck_in->delete();
+            $activeCheck_in_details->delete();
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Check_in Not Found"], 404);
+        }
+
+        return response()->json(["message"=>"Check_in Deactivated Successfully"]);
+    }
 }

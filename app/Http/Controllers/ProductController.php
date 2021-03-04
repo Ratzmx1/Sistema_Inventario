@@ -84,5 +84,27 @@ class ProductController extends Controller
         return response()->json(["message"=>"Product Changed Successfully"]);
     }
 
+    public function activate($id){
+        $InactiveProducts = Product::onlyTrashed();
+        foreach ($InactiveProducts as $i){
+            if ($i->id == $id) {
+                $i->restore();
+            }
+            else {
+                return response()->json(["message" => "Product Not Found"], 404);
+            }
+        }
+        return response()->json(["message"=>"Product Activated Successfully"]);
+    }
 
+    public function deactivate($id){
+        try {
+            $activeProduct = Product::find($id);
+            $activeProduct->delete();
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Product Not Found"], 404);
+        }
+
+        return response()->json(["message"=>"Product Deactivated Successfully"]);
+    }
 }

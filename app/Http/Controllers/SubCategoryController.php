@@ -75,4 +75,28 @@ class SubCategoryController extends Controller
 
         return response()->json(["message"=>"SubCategory Changed Successfully"]);
     }
+
+    public function activate($id){
+        $InactiveSubCategories = subCategory::onlyTrashed();
+        foreach ($InactiveSubCategories as $i){
+            if ($i->id == $id) {
+                $i->restore();
+            }
+            else {
+                return response()->json(["message" => "SubCategory Not Found"], 404);
+            }
+        }
+        return response()->json(["message"=>"SubCategory Activated Successfully"]);
+    }
+
+    public function deactivate($id){
+        try {
+            $activeSubCategory = subCategory::find($id);
+            $activeSubCategory->delete();
+        } catch (\Exception $e) {
+            return response()->json(["message" => "subCategory Not Found"], 404);
+        }
+
+        return response()->json(["message"=>"subCategory Deactivated Successfully"]);
+    }
 }

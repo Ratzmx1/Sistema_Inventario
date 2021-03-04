@@ -10,14 +10,13 @@
 ### Admin Middleware
 * ~~Ver cuentas inactivas: /user/inactive  - Get~~
 * ~~Ver usuarios registrados: /user - GET~~
-
 * ~~Activar Cuenta: /user/activate - POST (id)~~
-* Actualizar Rol: /user/role - POST (id, role_id)
+
 
 ### User Middleware
+* ~~Actualizar datos: /user/update - POST~~
 * Actualizar Contraseña: /user/change/password
 
-* Actualizar Correo: /user/change/email
 * ~~Cerrar Cuenta: /user/deactivate~~
 ---
 ## Rutas Proveedor
@@ -33,7 +32,7 @@
 
 * ~~Ver Categorias: /category - GET~~
 * ~~Actualizar Categorias: /category/update - POST (name)~~
-* Desactivar Categorias: /category/deactivate - POST (status)
+* ~~Desactivar Categorias: /category/deactivate - POST (status)~~
 ---
 ## Rutas SubCategoria
 ### User Middleware
@@ -41,7 +40,7 @@
 
 * ~~Actualizar: /subcategory/update - POST (name)~~
 * ~~Agregar SubCategoria: /subcategory/add - POST (name)~~
-* Desactivar subcategoria: /subcategory/update/status - POST (id, status)
+* ~~Desactivar subcategoria: /subcategory/deactivate - POST (id, status)~~
 * ~~Cambiar Categoria : /subcategory/update - POST (id, id_category)~~
 ---
 ## Rutas Producto
@@ -49,7 +48,7 @@
  * ~~Ver Productos: /product - GET~~
  * ~~Actualizar: /product/update - UPDATE~~
  * ~~Agregar Producto: /product/create - POST (name, id_subcategory, marca, stock_min)~~
- * Desactivar Producto: /product/deactivate - POST
+ * ~~Desactivar Producto: /product/deactivate - POST~~
 ---
 ## Rutas Entrada
 ### User Middleware
@@ -57,13 +56,15 @@
 
 * ~~Crear Entrada: /check_in/add - POST (provider_id, n_guia, user_id,  array( [id_products, quantity] ) )~~
 * ~~Actualizar: /check_in/update - UPDATE~~
+* ~~Desactivar entrada: /check_in/deactivate -POST~~
 ---
 ## Rutas Salida
 ### User Middleware
 * ~~Ver salidas: /check_out - GET~~
 
 * ~~Crear Salida: /check_out/add - POST (id_user,  array( [id_products, quantity] ) )~~
-* * ~~Actualizar: /check_out/update - UPDATE~~
+* ~~Actualizar: /check_out/update - UPDATE~~
+* ~~Desactivar Salida: /check_out/deactivate - POST~~
 ---
 ## Rutas Detalle Entrada
 ### User Middleware

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 /**
@@ -98,7 +99,7 @@ class UserController extends Controller
         return response()->json(["data"=>$users]);
     }
 
-    public function activateUser($id){
+    public function activate($id){
         $InactiveUsers = User::onlyTrashed();
         foreach ($InactiveUsers as $i){
             if ($i->id == $id) {
@@ -111,7 +112,7 @@ class UserController extends Controller
         return response()->json(["message"=>"User Activated Successfully"]);
     }
 
-    public function deactivateUser($id){
+    public function deactivate($id){
         try {
             $activeUser = User::find($id);
             $activeUser->delete();
@@ -120,5 +121,33 @@ class UserController extends Controller
         }
 
         return response()->json(["message"=>"User Deactivated Successfully"]);
+    }
+
+    public function change(Request $request){
+        $validator = Validator::make($request->all(),[
+            "id"=>"required|integer",
+            "email"=>"required|string",
+            "name"=>"required|string",
+            "lastname"=>"required|string",
+            "role_id"=>"required|integer"
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(["errors",$validator->errors()],400);
+        }
+
+        $changeUser = User::find($request->id);
+        $changeUser->email = $request->email;
+        $changeUser->name = $request->name;
+        $changeUser->lastname = $request->lastname;
+        $changeUser->role_id = $request->role;
+
+        try {
+            $changeUser->save();
+        }catch (\Exception $e){
+            return response()->json(["message","Internal Server Error"],500);
+        }
+
+        return response()->json(["message"=>"User Changed Successfully"]);
     }
 }

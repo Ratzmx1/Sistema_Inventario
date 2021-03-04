@@ -68,4 +68,28 @@ class CategoryController extends Controller
 
         return response()->json(["message"=>"Category Changed Successfully"]);
     }
+
+    public function activate($id){
+        $InactiveCategories = Category::onlyTrashed();
+        foreach ($InactiveCategories as $i){
+            if ($i->id == $id) {
+                $i->restore();
+            }
+            else {
+                return response()->json(["message" => "Category Not Found"], 404);
+            }
+        }
+        return response()->json(["message"=>"Category Activated Successfully"]);
+    }
+
+    public function deactivate($id){
+        try {
+            $activeCategory = Category::find($id);
+            $activeCategory->delete();
+        } catch (\Exception $e) {
+            return response()->json(["message" => "Category Not Found"], 404);
+        }
+
+        return response()->json(["message"=>"Category Deactivated Successfully"]);
+    }
 }

@@ -27,6 +27,7 @@ Route::middleware('jwt')->group(function () {
     Route::post("/provider/add",[ProviderController::class,"create"]);
     Route::get("/provider", [ProviderController::class,"show"]);
     Route::post("/provider/update", [ProviderController::class,"change"]);
+    Route::post("provider/deactivate", [ProviderController::class, "deactivate"]);
 });
 
 // RUTAS CHECK IN
@@ -34,6 +35,7 @@ Route::middleware('jwt')->group(function () {
     Route::post("/check_in/add",[CheckInController::class,"create"]);
     Route::get("/check_in",[CheckInController::class,"show"]);
     Route::get("/check_in/update", [CheckInController::class,"change"]);
+    Route::get("/check_in/deactivate", [CheckInController::class, "deactivate"]);
 
 });
 
@@ -47,6 +49,7 @@ Route::middleware('jwt')->group(function () {
     Route::post("/check_out/add",[CheckOutController::class,"create"]);
     Route::get("/check_out",[CheckOutController::class,"show"]);
     Route::post("/check_out/update",[CheckOutController::class,"change"]);
+    Route::post("/check_out/deactivate", [CheckOutController::class, "deactivate"]);
 });
 
 // RUTAS CATEGORY
@@ -54,6 +57,7 @@ Route::middleware('jwt')->group(function () {
     Route::post("/category/add",[CategoryController::class,"create"]);
     Route::get("/category", [CategoryController::class,"show"]);
     Route::post("/category/update", [CategoryController::class,"change"]);
+    Route::post("/category/deactivate", [CategoryController::class, "deactivate"]);
 });
 
 // RUTAS SUBCATEGORY
@@ -61,6 +65,7 @@ Route::middleware('jwt')->group(function () {
     Route::post("/subCategory/add", [SubCategoryController::class,"create"]);
     Route::get("/subCategory", [SubCategoryController::class,"show"]);
     Route::post("/subCategory/update", [SubCategoryController::class,"change"]);
+    Route::post("/subcategory/deactivate", [SubCategoryController::class, "deactivate"]);
 });
 
 // RUTAS PRODUCT
@@ -68,18 +73,25 @@ Route::middleware('jwt')->group(function () {
     Route::post("/product/add", [ProductController::class,"create"]);
     Route::get("/product", [ProductController::class,"show"]);
     Route::post("/product/update", [ProductController::class,"change"]);
+    Route::post("/product/deactivate", [ProductController::class, "deactivate"]);
 });
 
 // RUTAS ADMIN
 Route::middleware("admin")->group(function () {
     Route::get("/user", [UserController::class,"show"]);
     Route::get("/user/inactive", [UserController::class,"showInactive"]);
-    Route::get("/user/activate", [UserController::class, "activateUser"]);
+    Route::get("/user/activate", [UserController::class, "activate"]);
+    Route::get("/provider/activate", [ProviderController::class, "activate"]);
+    Route::get("/product/activate", [ProductController::class, "activate"]);
+    Route::get("category/activate", [CategoryController::class, "activate"]);
+    Route::get("/subcategory/activate", [SubCategoryController::class, "activate"]);
+    Route::get("/check_in/activate", [CheckInController::class, "activate"]);
 });
 
 // RUTAS USER
 Route::middleware('jwt')->group(function () {
-    Route::get("/user/deactivate", [UserController::class, "deactivateUser"]);
+    Route::get("/user/deactivate", [UserController::class, "deactivate"]);
+    Route::get("/user/update", [UserController::class, "change"]);
 
 });
 
