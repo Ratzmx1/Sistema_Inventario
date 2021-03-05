@@ -87,6 +87,7 @@ class UserController extends Controller
         $query = $request->query("query");
 
         $DeletedUsers = User::onlyTrashed();
+
         if(!$query){
             return response()->json(["data"=>$DeletedUsers]);
         }
@@ -104,23 +105,20 @@ class UserController extends Controller
         foreach ($InactiveUsers as $i){
             if ($i->id == $id) {
                 $i->restore();
-            }
-            else {
-                return response()->json(["message" => "User Not Found"], 404);
+                return response()->json(["message"=>"User Activated Successfully"]);
             }
         }
-        return response()->json(["message"=>"User Activated Successfully"]);
+        return response()->json(["message" => "User Not Found"], 404);
     }
 
     public function deactivate($id){
         try {
             $activeUser = User::find($id);
             $activeUser->delete();
+            return response()->json(["message"=>"User Deactivated Successfully"]);
         } catch (\Exception $e) {
             return response()->json(["message" => "User Not Found"], 404);
         }
-
-        return response()->json(["message"=>"User Deactivated Successfully"]);
     }
 
     public function change(Request $request){
@@ -136,18 +134,17 @@ class UserController extends Controller
             return response()->json(["errors",$validator->errors()],400);
         }
 
-        $changeUser = User::find($request->id);
-        $changeUser->email = $request->email;
-        $changeUser->name = $request->name;
-        $changeUser->lastname = $request->lastname;
-        $changeUser->role_id = $request->role;
-
         try {
+            $changeUser = User::find($request->id);
+            $changeUser->email = $request->email;
+            $changeUser->name = $request->name;
+            $changeUser->lastname = $request->lastname;
+            $changeUser->role_id = $request->role;
             $changeUser->save();
+            return response()->json(["message"=>"User Changed Successfully"]);
         }catch (\Exception $e){
             return response()->json(["message","Internal Server Error"],500);
         }
 
-        return response()->json(["message"=>"User Changed Successfully"]);
     }
 }
