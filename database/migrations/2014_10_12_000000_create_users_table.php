@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->foreignId("role_id")->constrained();
-            $table->string('status')->default("PENDIENTE");
+            $table->softDeletes();
         });
     }
 

@@ -18,6 +18,7 @@ class CreateProvidersTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->integer('phone');
+            $table->softDeletes();
         });
     }
 

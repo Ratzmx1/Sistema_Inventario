@@ -18,6 +18,7 @@ class CreateCheckInDetailsTable extends Migration
             $table->foreignId('check_in_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->integer('quantity');
+            $table->softDeletes();
         });
     }
 

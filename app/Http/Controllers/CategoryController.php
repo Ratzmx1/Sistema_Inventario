@@ -48,8 +48,7 @@ class CategoryController extends Controller
     public function change(Request $request){
         $validator = Validator::make($request->all(),[
             "id"=>"required|integer",
-            "name"=>"required|string",
-            "status"=>"required|string"
+            "name"=>"required|string"
         ]);
 
         if ($validator->fails()){
@@ -58,7 +57,6 @@ class CategoryController extends Controller
 
         $changeCategory = Category::find($request->id);
         $changeCategory->name = $request->name;
-        $changeCategory->status = $request->status;
 
         try {
             $changeCategory->save();
@@ -93,3 +91,5 @@ class CategoryController extends Controller
         return response()->json(["message"=>"Category Deactivated Successfully"]);
     }
 }
+
+//TODO softDelete cascade??

@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock')->default(0);
             $table->string('marca');
             $table->integer('stock_min');
-            $table->string('status')->default("ACTIVE");
+            $table->softDeletes();
         });
     }
 

@@ -59,8 +59,7 @@ class ProductController extends Controller
             "subCategory_id"=>"required|integer",
             "stock"=>"required|integer",
             "marca"=>"required|string",
-            "stock_min"=>"required|integer",
-            "status"=>"required|string"
+            "stock_min"=>"required|integer"
         ]);
 
         if ($validator->fails()){
@@ -73,7 +72,6 @@ class ProductController extends Controller
         $changeProduct->stock = $request->stock;
         $changeProduct->marca = $request->marca;
         $changeProduct->stock_min = $request->stock_min;
-        $changeProduct->status = $request->status;
 
         try {
             $changeProduct->save();

@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         $u->name="ADMIN";
         $u->lastname="chistoso";
         $u->role_id=1;
-        $u->status="ACTIVO";
         $u->save();
 //        Models\User::factory(10)->create();
         Models\Category::factory(15)->create();
