@@ -36,8 +36,8 @@ class JWTMiddlewareAdmin
             return response()->json(["Message"=>"Internal Server Error"],500);
         }
 
-        $role = User::all()->where("rut","==",$decoded->rut)->first()->role->name;
-        if ($role != "ADMIN" || $role != "ADMINISTRADOR"){
+        $role = User::find($decoded->id)->role->tipo;
+        if ($role != "ADMIN" && $role != "ADMINISTRADOR"){
             return response()->json(["Message"=>"Usuario no autorizado"],403);
         }
 

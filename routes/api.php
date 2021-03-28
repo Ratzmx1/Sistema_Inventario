@@ -81,6 +81,7 @@ Route::middleware("admin")->group(function () {
     Route::get("/user", [UserController::class,"show"]);
     Route::get("/user/inactive", [UserController::class,"showInactive"]);
     Route::post("/user/activate", [UserController::class, "activate"]);
+    Route::post("/user/deactivate", [UserController::class, "deactivate"]);
     Route::post("/provider/activate", [ProviderController::class, "activate"]);
     Route::post("/product/activate", [ProductController::class, "activate"]);
     Route::post("category/activate", [CategoryController::class, "activate"]);
@@ -90,7 +91,6 @@ Route::middleware("admin")->group(function () {
 
 // RUTAS USER
 Route::middleware('jwt')->group(function () {
-    Route::get("/user/deactivate", [UserController::class, "deactivate"]);
     Route::get("/user/update", [UserController::class, "change"]);
 
 });

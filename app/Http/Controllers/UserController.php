@@ -100,7 +100,7 @@ class UserController extends Controller
         return response()->json(["data"=>$users]);
     }
 
-    public function activate($id){
+    public function activate(Request $id){
         $InactiveUsers = User::onlyTrashed();
         foreach ($InactiveUsers as $i){
             if ($i->id == $id) {
@@ -111,9 +111,9 @@ class UserController extends Controller
         return response()->json(["message" => "User Not Found"], 404);
     }
 
-    public function deactivate($id){
+    public function deactivate(Request $id){
         try {
-            $activeUser = User::find($id);
+            $activeUser = User::findOrFail($id);
             $activeUser->delete();
             return response()->json(["message"=>"User Deactivated Successfully"]);
         } catch (\Exception $e) {
