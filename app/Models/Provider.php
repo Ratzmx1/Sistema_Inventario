@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $id
  * @property string $name
- * @property string $direction
- * @property int $telephone
+ * @property string $address
+ * @property int $phone
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Check_in[] $check_ins
  * @property-read int|null $check_ins_count
  * @method static \Illuminate\Database\Eloquent\Builder|Provider newModelQuery()

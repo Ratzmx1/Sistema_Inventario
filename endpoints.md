@@ -15,8 +15,6 @@
 
 ### User Middleware
 * Actualizar datos: /user/update - POST
-* Actualizar Contraseña: /user/change/password
-
 * Cerrar Cuenta: /user/deactivate
 ---
 ## Rutas Proveedor

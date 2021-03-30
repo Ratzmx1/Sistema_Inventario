@@ -92,7 +92,7 @@ Route::middleware("admin")->group(function () {
 // RUTAS USER
 Route::middleware('jwt')->group(function () {
     Route::get("/user/update", [UserController::class, "change"]);
-
+    Route::post("user/register", [UserController::class, "register"]);
 });
 
 

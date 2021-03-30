@@ -61,11 +61,10 @@ class SubCategoryController extends Controller
             return response()->json(["errors",$validator->errors()],400);
         }
 
-        $changeSubCategory = SubCategory::find($request->id);
-        $changeSubCategory->name = $request->name;
-        $changeSubCategory->category_id = $request->category_id;
-
         try {
+            $changeSubCategory = SubCategory::find($request->id);
+            $changeSubCategory->name = $request->name;
+            $changeSubCategory->category_id = $request->category_id;
             $changeSubCategory->save();
         }catch (\Exception $e){
             return response()->json(["message","Internal Server Error"],500);
