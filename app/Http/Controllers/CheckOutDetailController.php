@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Check_out_detail;
-use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CheckOutDetailController extends Controller
 {
-    public function show(Request $request){
-        $query = $request->query("query");
+    public function show($id){
 
-        $details = Check_out_detail::all()->where("check_out_id","==",$query);
+        $details = Check_out_detail::all()->where("check_out_id","==",intval($id));
         if (count($details) == 0){
             return response()->json(["message"=>"No Data Found"],404);
         }
         foreach ($details as $d){
-            $d->productName = $d->product()->first()->name;
+            $id_prod = $d->product_id;
+            $d->productName = Product::withTrashed()->find($id_prod)->first()->name;
         }
         return response()->json(["data"=>$details]);
     }

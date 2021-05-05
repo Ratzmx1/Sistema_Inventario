@@ -19,6 +19,7 @@ class CreateCheckInsTable extends Migration
             $table->integer('order_number');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

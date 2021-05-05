@@ -61,12 +61,11 @@ class ProviderController extends Controller
             return response()->json(["errors",$validator->errors()],400);
         }
 
-        $changeProvider = Provider::find($request->id);
-        $changeProvider->name = $request->name;
-        $changeProvider->address = $request->address;
-        $changeProvider->phone = $request->phone;
-
         try {
+            $changeProvider = Provider::find($request->id);
+            $changeProvider->name = $request->name;
+            $changeProvider->address = $request->address;
+            $changeProvider->phone = $request->phone;
             $changeProvider->save();
         }catch (\Exception $e){
             return response()->json(["message","Internal Server Error"],500);

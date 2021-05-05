@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Check_in_detail;
-use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CheckInDetailController extends Controller
 {
@@ -13,12 +13,11 @@ class CheckInDetailController extends Controller
         if (count($details) == 0){
             return response()->json(["message"=>"No Data Found"],404);
         }
-        $array = [];
         foreach ($details as $d){
-            $d->productName = $d->product()->first()->name;
-            array_push($array,$d);
+            $id_prod = $d->product_id;
+            $d->productName = Product::withTrashed()->find($id_prod)->first()->name;
         }
-        return response()->json(["data"=>$array]);
+        return response()->json(["data"=>$details]);
     }
 }
 

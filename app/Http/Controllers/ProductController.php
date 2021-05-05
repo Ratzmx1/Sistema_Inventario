@@ -55,26 +55,22 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(),[
             "id"=>"required|integer",
             "name"=>"required|string",
-            "subCategory_id"=>"required|integer",
+            "subcategory_id"=>"required|integer",
             "stock"=>"required|integer",
             "marca"=>"required|string",
-            "stock_min"=>"required|integer",
-            "status"=>"required|string"
+            "stock_min"=>"required|integer"
         ]);
 
         if ($validator->fails()){
             return response()->json(["errors",$validator->errors()],400);
         }
 
-        $changeProduct = Product::find($request->id);
-        $changeProduct->name = $request->name;
-        $changeProduct->subCategory_id = $request->subCategory_id;
-        $changeProduct->stock = $request->stock;
-        $changeProduct->marca = $request->marca;
-        $changeProduct->stock_min = $request->stock_min;
-        $changeProduct->status = $request->status;
-
         try {
+            $changeProduct = Product::find($request->id);$changeProduct->name = $request->name;
+            $changeProduct->subcategory_id = $request->subcategory_id;
+            $changeProduct->stock = $request->stock;
+            $changeProduct->marca = $request->marca;
+            $changeProduct->stock_min = $request->stock_min;
             $changeProduct->save();
         }catch (\Exception $e){
             return response()->json(["message","Internal Server Error"],500);

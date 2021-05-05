@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        $m = new Models\Role();
+        $m->tipo = "ADMIN";
+        $m->save();
         Models\Role::factory(6)->create();
         $u = new Models\User();
         $u->email="user@email.com";
@@ -22,8 +24,14 @@ class DatabaseSeeder extends Seeder
         $u->name="ADMIN";
         $u->lastname="chistoso";
         $u->role_id=1;
-        $u->status="ACTIVO";
         $u->save();
+        $u2 = new Models\User();
+        $u2->email="user2@email.com";
+        $u2->password=bcrypt("12345");
+        $u2->name="USER";
+        $u2->lastname="Gracioso";
+        $u2->role_id=2;
+        $u2->save();
 //        Models\User::factory(10)->create();
         Models\Category::factory(15)->create();
         Models\Provider::factory(30)->create();

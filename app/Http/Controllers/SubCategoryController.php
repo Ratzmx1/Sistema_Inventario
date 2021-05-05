@@ -54,20 +54,17 @@ class SubCategoryController extends Controller
         $validator = Validator::make($request->all(),[
             "id"=>"required|integer",
             "name"=>"required|string",
-            "category_id"=>"required|integer",
-            "status"=>"required|string"
+            "category_id"=>"required|integer"
         ]);
 
         if ($validator->fails()){
             return response()->json(["errors",$validator->errors()],400);
         }
 
-        $changeSubCategory = SubCategory::find($request->id);
-        $changeSubCategory->name = $request->name;
-        $changeSubCategory->category_id = $request->category_id;
-        $changeSubCategory->status = $request->status;
-
         try {
+            $changeSubCategory = SubCategory::find($request->id);
+            $changeSubCategory->name = $request->name;
+            $changeSubCategory->category_id = $request->category_id;
             $changeSubCategory->save();
         }catch (\Exception $e){
             return response()->json(["message","Internal Server Error"],500);

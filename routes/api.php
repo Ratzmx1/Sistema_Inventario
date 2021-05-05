@@ -80,19 +80,19 @@ Route::middleware('jwt')->group(function () {
 Route::middleware("admin")->group(function () {
     Route::get("/user", [UserController::class,"show"]);
     Route::get("/user/inactive", [UserController::class,"showInactive"]);
-    Route::get("/user/activate", [UserController::class, "activate"]);
-    Route::get("/provider/activate", [ProviderController::class, "activate"]);
-    Route::get("/product/activate", [ProductController::class, "activate"]);
-    Route::get("category/activate", [CategoryController::class, "activate"]);
-    Route::get("/subcategory/activate", [SubCategoryController::class, "activate"]);
-    Route::get("/check_in/activate", [CheckInController::class, "activate"]);
+    Route::post("/user/activate", [UserController::class, "activate"]);
+    Route::post("/user/deactivate", [UserController::class, "deactivate"]);
+    Route::post("/provider/activate", [ProviderController::class, "activate"]);
+    Route::post("/product/activate", [ProductController::class, "activate"]);
+    Route::post("category/activate", [CategoryController::class, "activate"]);
+    Route::post("/subcategory/activate", [SubCategoryController::class, "activate"]);
+    Route::post("/check_in/activate", [CheckInController::class, "activate"]);
 });
 
 // RUTAS USER
 Route::middleware('jwt')->group(function () {
-    Route::get("/user/deactivate", [UserController::class, "deactivate"]);
     Route::get("/user/update", [UserController::class, "change"]);
-
+    Route::post("user/register", [UserController::class, "register"]);
 });
 
 

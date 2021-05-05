@@ -19,6 +19,7 @@ class CreateCheckOutDetailsTable extends Migration
             $table->foreignId('check_out_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->integer('quantity');
             $table->unique(['product_id','check_out_id']);
+            $table->softDeletes();
         });
     }
 

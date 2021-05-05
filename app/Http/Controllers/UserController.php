@@ -100,7 +100,7 @@ class UserController extends Controller
         return response()->json(["data"=>$users]);
     }
 
-    public function activate($id){
+    public function activate(Request $id){
         $InactiveUsers = User::onlyTrashed();
         foreach ($InactiveUsers as $i){
             if ($i->id == $id) {
@@ -111,9 +111,9 @@ class UserController extends Controller
         return response()->json(["message" => "User Not Found"], 404);
     }
 
-    public function deactivate($id){
+    public function deactivate(Request $id){
         try {
-            $activeUser = User::find($id);
+            $activeUser = User::findOrFail($id);
             $activeUser->delete();
             return response()->json(["message"=>"User Deactivated Successfully"]);
         } catch (\Exception $e) {
@@ -124,6 +124,7 @@ class UserController extends Controller
     public function change(Request $request){
         $validator = Validator::make($request->all(),[
             "id"=>"required|integer",
+            "password"=>"required|string",
             "email"=>"required|string",
             "name"=>"required|string",
             "lastname"=>"required|string",
@@ -136,16 +137,45 @@ class UserController extends Controller
 
         try {
             $changeUser = User::find($request->id);
+            $changeUser->password = bcrypt($request->password);
             $changeUser->email = $request->email;
             $changeUser->name = $request->name;
             $changeUser->lastname = $request->lastname;
             $changeUser->role_id = $request->role;
             $changeUser->save();
-            return response()->json(["message"=>"User Changed Successfully"]);
         }catch (\Exception $e){
             return response()->json(["message","Internal Server Error"],500);
         }
 
+        return response()->json(["message"=>"User Changed Successfully"]);
+    }
+
+    public function register(Request $request){
+        $validator = Validator::make($request->all(),[
+            "email"=>"required|string",
+            "password"=>"required|string",
+            "name"=>"required|string",
+            "lastname"=>"required|string",
+            "role_id"=>"required|integer"
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(["errors",$validator->errors()],400);
+        }
+
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->role_id = $request->role;
+
+        try {
+            $user->save();
+        } catch (\Exception $e) {
+            return response()->json(["message", "Internal Server Error"], 500);
+        }
+        return response()->json(["message" => "User Created Successfully"]);
     }
 
 }

@@ -30,7 +30,6 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'password' => Hash::make($this->faker->password),
             "role_id"=>$this->faker->numberBetween(1,6),
-            "status"=>"ACTIVE"
         ];
     }
 }
