@@ -30,9 +30,8 @@ class ProductController extends Controller
         try {
             $product->save();
         } catch (\Exception $e) {
-            return response()->json(["message", "Internal Server Error"], 500);
+            return response()->json(["message"=>"Internal Server Error"], 500);
         }
-
         return response()->json(["message" => "Product Created Successfully"]);
     }
 
